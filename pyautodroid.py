@@ -3,9 +3,10 @@
 
 import os
 from subprocess import Popen, PIPE
+import numpy
 import cv2
 
-ADB_PATH = os.getenv('APPDATA')+'/Nox/bin/nox_adb.exe'
+ADB_PATH = 'D:/Mortar/Program Files/nox/Nox/bin/nox_adb.exe'
 SHARED_DIR = os.getenv('HOMEPATH')+'/Nox_share'
 LATEST_MATCH_LOC = [0, 0]
 
@@ -44,8 +45,8 @@ def find_imgs(device, temp, maxLen=10, threshold=0.97):
     # Apply template Matching
     matches = cv2.matchTemplate(img,template,cv2.TM_CCORR_NORMED)
 
-    for y in xrange(matches.shape[0]):
-        for x in xrange(matches.shape[1]):
+    for y in range(matches.shape[0]):
+        for x in range(matches.shape[1]):
             if matches[y][x] > threshold:
                 flag = True
                 for element in matchList:
